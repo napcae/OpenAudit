@@ -1,0 +1,19 @@
+
+db:
+  restart: never
+  container_name: mysql
+  image: mysql:latest
+  environment:
+    - MYSQL_ROOT_PASSWORD=password
+
+openaudit:
+  restart: never
+  container_name: OpenAudit
+  build: OpenAudit
+  ports:
+    - 8080:80
+    - 8083:8083
+    - 8086:8086
+    - 25826:25826/udp
+  links:
+    - db
